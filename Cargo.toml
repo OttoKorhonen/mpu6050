@@ -1,0 +1,45 @@
+[package]
+name = "mpu6050"
+version = "0.1.0"
+edition = "2021"
+
+[lib] 
+name = "mpu6050"
+path = "src/lib.rs"
+
+[features]
+default = ["esp32c3"]  
+esp32 = ["dep:esp-hal", "dep:esp-backtrace", "dep:esp-println"]
+esp32s2 = ["dep:esp-hal", "dep:esp-backtrace", "dep:esp-println"]
+esp32s3 = ["dep:esp-hal", "dep:esp-backtrace", "dep:esp-println"]
+esp32c3 = ["dep:esp-hal", "dep:esp-backtrace", "dep:esp-println"]
+
+# Raspberry Pi Pico
+rp-pico = ["dep:rp-hal"]
+# Raspberry Pi 4/5 Linux GPIO
+rp-linux = ["dep:rppal"]
+
+[dependencies]
+log = "0.4.21"
+critical-section = "1.2.0"
+embedded-hal = "1.0.0"
+
+#näitä on muokattu esim esp-hal ja prinln muokattu default-features = false -> esp32c3 ja backtraceen lisätty esp32c3
+esp-hal = { version = "0.22.0", optional = true, features = ["esp32c3", "log"]}
+esp-backtrace = { version = "0.14.2", optional = true, features = ["exception-handler", "esp32c3","panic-handler", "println"] }
+esp-println = { version = "0.12.0", optional = true, features=["esp32c3", "log"] }
+
+rp-hal = { version = "0.0.2", optional = true }        
+rppal = { version = "0.14", optional = true }
+
+[profile.dev]
+opt-level = "s"
+
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 's'
+overflow-checks = false
