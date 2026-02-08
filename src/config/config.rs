@@ -1,5 +1,4 @@
 /// External Frame Synchronization (EXT_SYNC_SET)
-///
 /// Enables the FSYNC pin to be used as a synchronization signal.
 /// The FSYNC signal is sampled and its edge is detected by the MPU-6050.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -25,13 +24,12 @@ pub enum ExtSync {
 
 impl ExtSync {
     /// Convert to register value
-    pub const fn register_value(&self) -> u8 {
+    pub const fn get_register_value(&self) -> u8 {
         *self as u8
     }
 }
 
 /// Digital Low Pass Filter (DLPF) Configuration
-///
 /// Configures the Digital Low Pass Filter setting for both the gyroscope and accelerometer.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
@@ -67,7 +65,7 @@ pub enum DlpfConfig {
 
 impl DlpfConfig {
     /// Get accelerometer bandwidth in Hz
-    pub const fn accel_bandwidth_hz(&self) -> u16 {
+    pub const fn get_accel_bandwidth_hz(&self) -> u16 {
         match self {
             Self::Dlpf0 => 260,
             Self::Dlpf1 => 184,
@@ -80,7 +78,7 @@ impl DlpfConfig {
     }
 
     /// Get gyroscope bandwidth in Hz
-    pub const fn gyro_bandwidth_hz(&self) -> u16 {
+    pub const fn get_gyro_bandwidth_hz(&self) -> u16 {
         match self {
             Self::Dlpf0 => 256,
             Self::Dlpf1 => 188,
