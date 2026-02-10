@@ -1,4 +1,4 @@
-use crate::config::{AccelConfig, DlpfConfig, ExtSync, GyroConfig, IntPinConfig, InterruptEnable};
+use crate::config::{AccelConfig, DlpfConfig, ExtSync, GyroConfig, IntPinConfig, InterruptEnable, PwrMgmt1};
 use crate::errors::MPU6050Error;
 use crate::registers::Registers;
 use embedded_hal::i2c::SevenBitAddress;
@@ -80,6 +80,20 @@ where
             &[
                 Registers::InterruptPinCfg.get_register_address(),
                 interrupt_pin_conf.register_value(),
+            ],
+        )?;
+        Ok(())
+    }
+
+    pub fn configure_power_management(
+        &mut self,
+        pwr_mgmt: PwrMgmt1,
+    ) -> Result<(), MPU6050Error<I2C::Error>> {
+        self.i2c.write(
+            self.address,
+            &[
+                Registers::PowerMgmt1.get_register_address(),
+                pwr_mgmt.register_value(),
             ],
         )?;
         Ok(())
