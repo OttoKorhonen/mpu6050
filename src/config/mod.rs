@@ -15,3 +15,4 @@ pub use int_pin_config::IntPinConfig;
 pub use interrupt_enable::InterruptEnable;
 pub use pwr_mgmt_1_config::PwrMgmt1;
 pub use clock_source::ClockSource;
+pub use fifo::FifoConfig;
