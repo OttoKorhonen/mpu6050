@@ -94,3 +94,7 @@ rustflags = [
 #
 # Load an elf, skipping unchanged flash sectors, verify it, and execute it
 runner = "picotool load -u -v -x -t elf"
+
+# The FPU is enabled by default, and float function arguments use FPU
+# registers.
+

@@ -3,7 +3,7 @@
 pub enum Registers{
     SmprtDiv = 0x19,
     Config = 0x1A,
-    GyroConfig = 0x18,
+    GyroConfig = 0x1B,
     AccelConfig = 0x1C,
     FifoEn = 0x23,
     InterruptPinCfg = 0x37,
@@ -14,7 +14,7 @@ pub enum Registers{
     FifoCountL = 0x73,
     FifoRW = 0x74,
     WhoAmI = 0x75,
-    PowerMgmt1 = 0x68,
+    PowerMgmt1 = 0x6B,
     AccelXOutH = 0x3B,
     AccelXOutL = 0x3C,
     AccelYOutH = 0x3D,
