@@ -11,7 +11,7 @@ pub enum GyroConfig {
 impl GyroConfig {
     /// Get register value for GYRO_CONFIG register
     pub const fn register_value(&self) -> u8 {
-        *self as u8
+        (*self as u8) << 3
     }
 
     /// Get gyroscope full scale range in degrees per second

@@ -10,7 +10,7 @@ pub enum AccelConfig {
 impl AccelConfig {
     /// Get register value for ACCEL_CONFIG register
     pub const fn register_value(&self) -> u8 {
-        *self as u8
+        (*self as u8) << 3
     }
     
     /// Get accelerometer full scale range in G

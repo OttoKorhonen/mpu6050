@@ -12,6 +12,7 @@ path = "src/lib.rs"
 # Cortex-M
 cortex-m = "0.7.7"
 cortex-m-rt = "0.7.5"
+embedded-hal = "1.0.0"
 
 # Panic Handler
 panic-probe = { version = "1.0.0", features = ["print-defmt"] }
