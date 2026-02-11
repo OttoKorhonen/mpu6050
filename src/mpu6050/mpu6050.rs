@@ -223,4 +223,16 @@ where
             z: i16::from_be_bytes([buffer[4], buffer[5]]),
         })
     }
+
+    fn reg_value_to_temp(&self, buffer: [u8; 2]) -> i16 {
+        let raw_temp = i16::from_be_bytes(buffer);
+        ((raw_temp as f32) / 340.0 + 36.53).round() as i16
+    }
+
+    pub fn read_temp(&mut self) -> Result<i16, MPU6050Error<I2C::Error>> {
+        let mut buffer = [0u8; 2];
+        self.i2c.write_read(self.address, &[Registers::TempOutH.get_register_address()], &mut buffer)?;
+        let temp = self.reg_value_to_temp(buffer);
+        Ok(temp)
+    }
 }
