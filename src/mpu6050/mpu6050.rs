@@ -226,7 +226,7 @@ where
 
     fn reg_value_to_temp(&self, buffer: [u8; 2]) -> i16 {
         let raw_temp = i16::from_be_bytes(buffer);
-        ((raw_temp as f32) / 340.0 + 36.53).round() as i16
+        ((raw_temp as f32) / 340.0 + 36.53) as i16
     }
 
     pub fn read_temp(&mut self) -> Result<i16, MPU6050Error<I2C::Error>> {
